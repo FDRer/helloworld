@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LBitamapData对象</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend"></div>
+	<script>
+		init(50,'mylegend',600,600,main);
+		var loader;
+		function main(){
+			loader = new LLoader();
+			loader.load('img/01.png','bitmapData');
+			loader.addEventListener(LEvent.COMPLETE,loadBitmapData);
+		}
+		function loadBitmapData(){
+			var bitmapdata = new LBitmapData(loader.content,20,20,200,100);
+			var bitmap = new LBitmap(bitmapdata);
+			addChild(bitmap);
+		}
+		// LBitmapData(img,x,y,width,height)
+		// img=>img对象，图片资源
+		// x，y=>图片可视范围起点坐标
+		// width，height，截取图片的宽到
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>画圆</title>
+</head>
+<body>
+	<canvas id="canvas" width="600px" height="600px">你的浏览器不支持Canvas</canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if (canvas.getContext) {
+			var ctx = canvas.getContext('2d');
+			console.log(ctx);
+			ctx.lineWidth = 5;
+			ctx.beginPath();
+			ctx.strokeStyle = 'rgba(0,0,200,0.5)';
+			ctx.arc(100,100,30,0,90*Math.PI/180,false);
+			ctx.stroke();
+			
+			ctx.beginPath();
+			ctx.fillStyle = 'rgba(0,0,200,0.5)';
+			ctx.arc(100,200,50,0,180*Math.PI/180,true);
+			ctx.fill();
+		}
+	</script>
+</body>
+</html>

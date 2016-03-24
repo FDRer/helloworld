@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LSprite层的概念</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend">loading......</div>
+	<script>
+		init(50,'mylegend',600,600,main);
+		var loader;
+		function main(){
+			loader = new LLoader();
+			loader1 = new LLoader();
+			loader.load('img/01.png','bitmapData');
+			loader1.load('img/02.png','bitmapData');
+			loader.addEventListener(LEvent.COMPLETE,loadBitmapData);
+		}
+
+		function loadBitmapData(){
+			var bitmapdata = new LBitmapData(loader.content);
+			var bitmapdata1 = new LBitmapData(loader1.content);
+			var bitmap = new LBitmap(bitmapdata);
+			var bitmap1 = new LBitmap(bitmapdata1);
+		
+			//如何控制层的顺序？
+			var layer1 = new LSprite();
+			addChild(layer1);
+			layer1.rotate = 60;
+			layer1.scaleX = 1;
+			layer1.addChild(bitmap1);
+
+			var layer = new LSprite();
+			addChild(layer);
+			layer.addChild(bitmap);
+		}
+	</script>
+</body>
+</html>

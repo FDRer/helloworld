@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LBitmap对象</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend">loading......</div>
+	<script>
+		init(50,'mylegend',600,600,main);
+		var loader;
+		function main(argument) {
+			loader = new LLoader();
+			loader.load('img/01.png');
+			loader.addEventListener(LEvent.COMPLETE,loadBitmapData);
+		}
+		function loadBitmapData(){
+			var bitmapdata = new LBitmapData(loader.content);
+			var bitmap = new LBitmap(bitmapdata);
+			bitmap.x = 20;
+			bitmap.y = 10;
+			bitmap.rotate = 0;//旋转
+			bitmap.alpha = 0.4;//透明度
+			bitmap.scaleX = 0.8;//缩放
+			bitmap.scaleY = 0.8;
+			addChild(bitmap); 
+		}
+	</script>
+</body>
+</html>

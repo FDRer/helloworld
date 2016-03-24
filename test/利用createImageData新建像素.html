@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用createImageData新建像素</title>
+</head>
+<body>
+	<canvas id="canvas" style="border: 2px solid #000" width="500" height="600">你的浏览器不支持Canvas</canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext){
+			var ctx = canvas.getContext('2d');
+			var img = new Image();
+			img.src = './img/01.png';
+			window.onload = function(){
+				ctx.drawImage(img,10,10);
+				var imgData = ctx.getImageData(50,50,100,100);
+				var imgData1 = ctx.createImageData(imgData);
+			}
+
+			for(var i =0;i<imgData1.width*imgData1.height*4;i+=4){
+				imgData1.data[i+0] = 255;
+				imgData1.data[i+1] = 0;
+				imgData1.data[i+2] = 0;
+				imgData1.data[i+3] = 255;
+			}
+			ctx.putImageData(imgData1,200,260);
+		}
+	</script>
+</body>
+</html>

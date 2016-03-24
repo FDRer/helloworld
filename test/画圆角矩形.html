@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>画圆角矩形</title>
+</head>
+<body>
+	<canvas id="canvas">你的浏览器不支持Canvas</canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if (canvas.getContext) {
+			var ctx = canvas.getContext('2d');
+			console.log(ctx);
+			ctx.lineWidth = 1;
+			ctx.strokeStyle = 'red';
+			ctx.beginPath();
+			ctx.moveTo(30,20);
+			ctx.arcTo(120,20,120,30,10);
+			ctx.arcTo(120,70,110,70,10);
+			ctx.arcTo(20,70,20,60,10);
+			ctx.arcTo(20,20,30,20,10);
+			ctx.stroke();	
+			//参考文章：http://www.365mini.com/page/html5-canvas-arcto.htm
+		}
+	</script>
+</body>
+</html>

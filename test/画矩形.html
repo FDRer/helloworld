@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>画矩形</title>
+</head>
+<body>
+	<canvas id="canvas" style="margin-left: 300px;" height="600px;" ></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+		ctx.lineWidth=1;
+		ctx.strokeStyle="rgb(0,0,200)";
+		ctx.beginPath();
+		//ctx.strokeRect(30,30,80,20);
+		ctx.rect(30,30,80,20);
+		ctx.stroke();
+
+		ctx.fillStyle = 'rgba(0,0,200,0.5)';
+		ctx.beginPath();
+		//ctx.fillRect(30,300,80,20);
+		ctx.rect(30,300,80,20);
+		ctx.fill();
+	</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>阴影效果</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600" style="border: 1px solid #000"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext){
+			var ctx = canvas.getContext('2d');
+			ctx.shadowColor='#000000';//阴影颜色
+			ctx.shadowBlur = 30;//羽化效果
+			ctx.shadowOffsetX = 20;//
+			ctx.shadowOffsetY = 20;
+
+			var img = new Image();
+			img.src = 'img/01.png';
+			img.onload = function(){
+				ctx.drawImage(img,0,0);
+			}
+		}
+	</script>
+</body>
+</html>

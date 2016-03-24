@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>自由画板</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="600" height="600"></canvas>
+	<div><button id="px4">4px</button><button id="px8">8px</button><button id="px10">10px</button></div>
+	<div><button id="yellow">黄色</button><button id="green">绿色</button><button id="red">红色</button><button id="black">黑色</button></div>
+	<div><button id="save">保存</button></div>
+	<img id="copyimg" src="" alt="">
+		<script>
+			var canvas = document.getElementById('canvas');
+			if(canvas.getContext){
+				var ctx = canvas.getContext('2d');
+
+				ctx.fillStyle = '#000';
+				ctx.fillRect(0,0,600,600);
+
+				//设置
+				var onoff = false;
+				var linewidth = 30;
+				var linecolor = '#fff';
+				var oldx = -10;
+				var oldy = -10;
+
+				//添加按压事件
+				canvas.addEventListener('mousedown',function(e){
+					oldx = e.pageX;
+					oldx = e.pagey;
+					onoff = true;
+				},true);
+				//鼠标离开事件
+				canvas.addEventListener('mouseup',function(){
+					onoff = false;
+				},false);
+				//鼠标移动事件
+				canvas.addEventListener('mousemove',function(e){
+					if(onoff){
+					var newx = e.pageX-10;
+					var newy = e.pageY-10;
+					ctx.beginPath();
+					ctx.moveTo(oldx,oldy);
+					ctx.lineTo(newx,newy);
+					ctx.strokeStyle = linecolor;
+					ctx.lineWidth = linewidth;
+					ctx.lineCap = 'round';
+					ctx.stroke();
+
+					oldx = newx;
+					oldy = newy;
+					}
+
+				},false)
+			}
+
+			var px4 = document.getElementById('px4');
+			var px8 = document.getElementById('px8');
+			var px10 = document.getElementById('px10');
+			var yellow = document.getElementById('yellow');
+			var green = document.getElementById('green');
+			var black = document.getElementById('black');
+			var red = document.getElementById('red');
+			var copyimg = document.getElementById('copyimg')
+			var save = document.getElementById('save')
+
+			function btnclick(arg){
+				switch (arg){
+					case px4:
+						linewidth = 4;
+					break;
+					case px8:
+						linewidth = 8;
+					break;
+					case px10:
+						linewidth = 10;
+					break;
+					case yellow:
+						linecolor = "yellow";
+					break;
+					case green:
+						linecolor = "green";
+					break;
+					case black:
+						linecolor = "black";
+					break;
+					case red:
+						linecolor = "red";
+					break;
+					default:
+						linecolor = "#000";
+				}
+			}
+
+			px4.onclick = function(){btnclick(px4)}
+			px8.onclick = function(){btnclick(px8)}
+			px10.onclick = function(){btnclick(px10)}
+			yellow.onclick = function(){btnclick(yellow)}
+			green.onclick = function(){btnclick(green)}
+			black.onclick = function(){btnclick(black)}
+			red.onclick = function(){btnclick(red)}
+			save.onclick = function(){
+				var img_png_src = canvas.toDataURL('img/png');
+				copyimg.src = img_png_src;
+			}
+		
+		</script>
+	</body>
+	</html>	

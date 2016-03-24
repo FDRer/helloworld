@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clip指定绘图区域</title>
+</head>
+<body>
+	<canvas id="canvas">你的浏览器不支持Canvas</canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if (canvas.getContext) {
+			var ctx = canvas.getContext('2d');
+			console.log(ctx);
+			ctx.beginPath();
+			
+			ctx.arc(100,100,50,0,360*Math.PI/180,true);
+			//ctx.fill  不需要，将ctx.arc()当做窗口，下面的矩形就只显示圆内部分
+			ctx.clip();
+			ctx.beginPath();
+			ctx.fillStyle='rgb(0.0.200)';
+			ctx.fillRect(0,0,150,150);
+			
+		}
+	</script>
+</body>
+</html>

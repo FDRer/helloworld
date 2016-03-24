@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>擦除Canvas画板</title>
+</head>
+<body>
+	<canvas id="canvas">你的浏览器不支持Canvas</canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if (canvas.getContext) {
+			var ctx = canvas.getContext('2d');
+			console.log(ctx);
+			ctx.lineWidth = 20;
+			ctx.strokeStyle = 'red';
+			ctx.beginPath();
+			ctx.lineCap="butt";
+			ctx.lineCap="square";
+			ctx.lineCap="round";//线帽
+			ctx.moveTo('10','10');
+			ctx.lineTo(150,50);
+			ctx.stroke();
+
+			ctx.fillStyle="rgba(0,0,200,0.5)";
+			ctx.beginPath();
+			ctx.fillRect(50,50,200,100)
+
+			ctx.clearRect(60,60,30,30);
+			
+		}
+	</script>
+</body>
+</html>

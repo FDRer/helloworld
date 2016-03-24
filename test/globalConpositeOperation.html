@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>globalCompositeOperation</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext){
+			var ctx = canvas.getContext('2d');
+			ctx.fillStyle = '#00ff00';
+			ctx.fillRect(10,10,50,50);
+			ctx.globalCompositeOperation = 'xor';
+			//source-over,source-atop,source-in,source-out,copy,darker,destination-atop,destination-in,destination-out,destination-over,lighter
+			//xor
+			ctx.beginPath();
+			ctx.fillStyle='#ff0000';
+			ctx.arc(50,50,30,0,2*Math.PI);
+			ctx.fill();
+
+		}
+	</script>
+</body>
+</html>

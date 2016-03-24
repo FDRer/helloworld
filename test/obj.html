@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//var obj = {};
+		//obj[1] = 1;
+		//obj['1'] = 2;
+		//alert(obj[1]);
+		function foo(argument) {
+			// body...
+			foo.prototype.z = 56;
+		}
+		
+		var obj = new foo();
+		obj.z = 5;
+		console.log(delete obj.z);
+		//alert(obj.z);
+
+		var k = 1;
+
+		// console.log(window.k)
+		// console.log(delete k+'delet1')
+
+		var cat = new Object;
+		cat.k = 5;
+		console.log('k' in cat);
+		console.log('abc' in cat);
+		console.log(cat.hasOwnProperty('k'));
+
+	</script>
+</body>
+</html>

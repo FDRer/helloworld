@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		canvas{width: 200px;height: 300px;}
+	</style>
+</head>
+<body>
+	<canvas id="myCanvas"></canvas>
+	<button id="btn">获取经纬度</button>
+	<div id="geolocation">ff</div>
+	<script>
+	var canvas = document.getElementById('myCanvas');
+	var item = canvas.getContext('2d');
+	item.fillStyle='#f0e';
+	item.fillRect('10','10','300','100');
+
+	document.getElementById('btn').onclick = function(){
+		if(navigator.geolocation){
+
+			navigator.geolocation.getCurrentPosition(update);
+			console.log('heh')
+		}
+	};
+
+	function update(position){
+		var lat = position.coords.latitude;
+		var lng = position.coords.longitude;
+		console.log(lat)
+		document.write( "您所在的位置： 经度" + lat + "，纬度" + lng );
+	}
+
+
+	</script>
+
+
+	<canvas id="canvas"></canvas>
+	<script>
+		var dom = {
+			canvas:document.getElementById('canvas'),
+		}
+		dom.draw = function(){
+			if(dom.canvas.getContext){
+				var myCanvas = dom.canvas.getContext('2d');
+				myCanvas.fillStyle = "rgb(200,0,0)";
+				myCanvas.fillRect('10','10','200','100');			
+
+				myCanvas.fillStyle = "rgba(0, 0, 200, 0.5)";
+				myCanvas.fillRect('30','30','200','100');
+
+
+			}
+
+		}
+
+
+		onload = function(){
+			dom.draw();
+		}
+
+	</script>
+</div>
+</body>
+</html>

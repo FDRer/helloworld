@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>颜色反转</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600" style="border: 1px solid #000"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext){
+			var ctx = canvas.getContext('2d');
+			var img = new Image();
+			img.src = 'img/01.png';
+			img.onload = function(){
+				ctx.drawImage(img,0,0);
+				var imgdata = ctx.getImageData(0,0,300,180);
+				var pixels = imgdata.data;
+				//遍历像素
+				for(var i=0,n=pixels.length;i<n;i+=4){
+					pixels[i] = 255-pixels[i];
+					pixels[i+1] = 255-pixels[i+1];
+					pixels[i+2] = 255-pixels[i+2];
+				}
+				ctx.putImageData(imgdata,0,180);
+			}
+		}
+	</script>
+</body>
+</html>

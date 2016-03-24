@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600" style="border: 1px dotted #000000"></canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if (canvas.getContext){
+			var ctx = canvas.getContext('2d');
+			var img = new Image();
+			img.src = './img/01.png';
+			window.onload = function() {
+				ctx.drawImage(img,10,10,100,100);
+				ctx.rotate(170*Math.PI/180);
+				ctx.translate(400,400);
+				ctx.drawImage(img,100,100,-100,-100);
+			}
+			
+		}
+	</script>
+</body>
+</html>

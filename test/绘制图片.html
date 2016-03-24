@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绘制图片</title>
+</head>
+<body>
+	图片<br>
+	<img id="img" src="./img/01.jpg" alt="" width="240" height="240"><br>
+	Canvas <br>
+	<canvas id="canvas" style="border: 2px solid #000;" width="500" height="300">你的浏览器不支持Canvas</canvas>
+	<script>
+	window.onload = function(){
+		var canvas = document.getElementById('canvas');
+		if (canvas.getContext) {
+			var ctx = canvas.getContext('2d');
+			console.log(ctx);
+			// var img = document.getElementById('img');
+			// ctx.drawImage(img,0,0,400,240);
+			// 通过Img对象绘图
+			var img = new Image();
+			img.src = './img/01.jpg';
+			ctx.drawImage(img,10,10);
+			ctx.drawImage(img,20,20,200,100);
+			//ctx.drawImage(img,0,0,600,600,50,50,150,150);//1、2坐标为截取图片坐标，3、4坐标为画布坐标区域
+		}
+
+	}
+	</script>
+</body>
+</html>

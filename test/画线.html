@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>画线</title>
+</head>
+<body>
+	<canvas id="canvas" style="border: 2px solid #000">你的浏览器不支持Canvas</canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if (canvas.getContext) {
+			var ctx = canvas.getContext('2d');
+			console.log(ctx);
+			ctx.lineWidth = 10;
+			ctx.strokeStyle = 'red';
+			ctx.beginPath();
+			ctx.lineCap="butt";
+			ctx.lineCap="square";
+			ctx.lineCap="round";//线帽
+			ctx.moveTo('10','10');
+			ctx.lineTo(150,50);
+			ctx.stroke();	
+			
+		}
+	</script>
+</body>
+</html>

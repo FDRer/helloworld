@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片加载与显示</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend">loading......</div>
+	<script>
+		init(50,'mylegend',500,300,main)
+		var loader;
+		function main() {
+			loader = new LLoader();
+			loader.load('img/01.png','bitmapData');
+			loader.addEventListener(LEvent.COMPLETE,loadBitmapdata);
+			console.log(LEvent.COMPLETE+'hehe');
+			
+		}
+		function loadBitmapdata(event){
+			var bitmapdata = new LBitmapData(loader.content,0,0,180,180);
+			var bitmap = new LBitmap(bitmapdata);
+			addChild(bitmap);
+		}
+		
+
+	</script>
+</body>
+</html>

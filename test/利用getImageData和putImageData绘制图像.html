@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用getImageData和putImageData绘制图像</title>
+</head>
+<body>
+	<canvas id="canvas" style="border: 2px solid #000" width="500" height="600">你的浏览器不支持Canvas</canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		if(canvas.getContext){
+			var ctx = canvas.getContext('2d');
+			var img = new Image();
+			img.src = './img/01.jpg';
+			img.onload = function(){
+				ctx.drawImage(img,10,10);
+				var imgData = ctx.getImageData(50,50,200,200);
+				ctx.putImageData(imgData,10,100);
+				ctx.putImageData(imgData,200,100,50,50,100,100);
+			}
+		}
+	</script>
+</body>
+</html>

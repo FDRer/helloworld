@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用LSprite对象绘图</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+
+</head>
+<body>
+	<div id="mylegend">loading......</div>
+	<script>
+		init(50,'mylegend',600,600,main);
+		function main(){
+			var layer = new LSprite();
+			addChild(layer);
+			layer.graphics.drawRect(2,'#000',[20,20,50,50]);//drawRect()参数分别是border宽度，border颜色，图像坐标，是否填充，填充颜色
+			//每个LSprite对象都包含一个LGraphics对象(graphics)
+		}
+	</script>
+</body>
+</html>

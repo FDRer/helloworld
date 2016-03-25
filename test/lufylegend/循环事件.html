@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>循环事件-LEvent.ENTER_FRAME</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend">loading......</div>
+	<script>
+		init(1000,'mylegend',600,600,main);
+		var field;
+		function main(){
+			var layer = new LSprite();//建立层
+			layer.graphics.drawRect(1,'#000',[0,0,50,50]);//在层上绘制图形面板，用以显示text，可以使用drawArc
+			addChild(layer);//将层加入canvas
+			field = new LTextField();//设立文本对象
+			field.text = '0';
+			field.size =32;
+			layer.addChild(field);//将文本对象放入层
+			layer.addEventListener(LEvent.ENTER_FRAME,onFrame);//监听层循环事件，貌似不能LTextField添加事件
+		}
+		function onFrame(){
+			
+			field.text = parseInt(field.text)+1;//循环事件，循环速度由init的第一个参数控制
+		}
+	</script>
+</body>
+</html> 

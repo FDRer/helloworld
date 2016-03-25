@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>button按钮</title>
+		<script src="js/lufylegend-1.10.0.min.js"></script>
+
+</head>
+<body>
+<div id="mylegend">loading......</div>
+	<script>
+		init(50,'mylegend',600,600,main);
+		// var field;
+		// function main(argument) {
+		// 	var layer = new LSprite();
+		// 	field = new LTextField();
+		// 	addChild(layer);
+		// 	layer.graphics.drawRect(1,'#000',[10,10,100,30]);
+		// 	layer.addChild(field);
+		// 	field.text = "点我试试";
+		// 	field.x = 15;
+		// 	field.y = 15;
+		// 	layer.addEventListener(LMouseEvent.MOUSE_DOWN,btnDown);
+		// 	layer.addEventListener(LMouseEvent.MOUSE_UP,btnUp);
+		// }
+		// function btnDown(){
+		// 	field.text = '已经点了';
+		// }		
+		// function btnUp(){
+		// 	field.text = '点我试试';
+		// }
+		// 以上并未使用LButton对象，然。。。
+		// 
+		var loader1;
+		var loader2;//也可以只命名一个loader对象，后面的覆盖前面，如下
+		var field;
+		var bitmapup;
+		var bitmapover;
+		var testbutton
+
+		function main(){
+			loader1 = new LLoader();
+			loader1.load('img/btn1.png','bitmapData');
+			loader1.addEventListener(LEvent.COMPLETE,loaderUp);
+		}
+		function loaderUp(event){
+			bitmapup = new LBitmap(new LBitmapData(loader1.content));//btn1图片对象
+			//接着新建btn2图片对象
+			loader2 = new LLoader();
+			loader2.load('img/btn2.png','bitmapData');
+			loader2.addEventListener(LEvent.COMPLETE,loaderOver);
+					}
+		function loaderOver(){
+			bitmapover = new LBitmap(new LBitmapData(loader2.content));//btn2图片对象
+			var layer = new LSprite()
+			addChild(layer);
+			field = new LTextField();
+			field.text = 'hello world';
+			layer.addChild(field);
+			testbutton = new LButton(bitmapup,bitmapover);//第一个参数显示btn1图片，默认状态，鼠标hover在button上面时显示btn2
+			testbutton.y = 50;
+			testbutton.x = 50;
+			
+			layer.addChild(testbutton);
+			testbutton.addEventListener(LMouseEvent.MOUSE_DOWN,downShow);
+		}
+		function downShow(){
+			field.text = "button click";
+			testbutton.scaleX=1;
+			testbutton.scaleY=1;
+		}
+	</script>
+</body>
+</html>

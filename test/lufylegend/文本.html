@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文本</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend">loading......</div>
+	<script>
+		init(50,'mylegend',600,600,main);
+		function main(argument) {
+			var layer = new LSprite();
+			addChild(layer);
+			var field = new LTextField(); //文字
+			field.text='hello world';
+			field.size = 32;
+			field.x = 0;
+			field.y = 0;
+			field.color = "#333333";
+			field.weight = 500;
+			layer.addChild(field);
+
+			var f2 = new LTextField()
+			f2.x = 100;
+			f2.y = 50;
+			f2.setType(LTextFieldType.INPUT);
+			layer.addChild(f2);
+
+		}
+	</script>
+</body>
+</html>

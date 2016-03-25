@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+
+</head>
+<body>
+	<div id="mylegend">loading......</div>
+	<script>
+		init(50,'mylegend',600,600,main);
+		var field;
+		function main(argument) {
+			//鼠标事件LMouseEvent.MOUSE_DOWN鼠标按下事件，LMouseEvent.MOUSE_up鼠标弹起事件，LMouseEvent.MOUSE_MOVE 鼠标移动
+			var layer = new LSprite();
+			layer.graphics.drawRect(1,'#ccc',[0,0,200,20]);
+			addChild(layer);
+			field = new LTextField();
+			field.text = "hellp world";
+			layer.addChild(field);
+
+			layer.addEventListener(LMouseEvent.MOUSE_DOWN,mouseDown);
+			layer.addEventListener(LMouseEvent.MOUSE_UP,mouseUp);
+		}
+
+		function mouseDown(){
+			field.text = '按下';
+		}
+
+		function mouseUp(){
+			field.text = "弹起";
+		}
+	</script>
+</body>
+</html>

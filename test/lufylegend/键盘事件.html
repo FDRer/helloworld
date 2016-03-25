@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>键盘事件</title>
+
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend">loading......</div>
+	<script>
+		init(50,'mylegend',600,600,main);
+		var field;
+		function main(argument) {
+			var layer = new LSprite();
+			layer.graphics.drawRect(1,'#000',[0,0,200,200]);
+			addChild(layer);
+			field = new LTextField()
+			layer.addChild(field);
+			LEvent.addEventListener(LGlobal.window,LKeyboardEvent.KEY_DOWN,keyDown);
+			LEvent.addEventListener(LGlobal.window,LKeyboardEvent.KEY_UP,keyUp);
+		}
+		function keyDown(event){
+			field.text = event.keyCode;
+		}
+		function keyUp(event){
+			field.text = event.keyCode+'松开';
+		}
+	</script>
+</body>
+
+</html>

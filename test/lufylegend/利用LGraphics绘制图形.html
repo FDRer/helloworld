@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>利用LGraphics对象绘图</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend">loading......</div>
+	<script>
+		init(50,'mylegend',600,600,main);
+		function main(argument) {
+			var graphics = new LGraphics();
+			addChild(graphics);
+			graphics.drawRect(1,'#000000',[0,0,50,50]);
+			graphics.drawRect(1,'#5e5e5e',[60,0,50,50],true,'#ffffff');
+			//drawRect()参数分别是border宽度，border颜色，图像坐标，是否填充，填充颜色
+			
+			//绘制圆drawArc(thickneww,linecolor,pointArray,isfill,color);
+			//pointArray 圆形数组[坐标X,坐标Y,半径,起始角度,结束角度,顺时针或逆时针]
+			graphics.drawArc(1,'#000000',[100,100,20,0,360*Math.PI/180],true);
+
+			//绘制任意多边形
+			//drawVertices(thickness,linecolor,vertices,isfill,color);
+			//vertices,顶点数组[[顶点1],[顶点2],......]
+			
+			graphics.drawVertices(1,'#000',[[130,130],[180,110],[180,170],[160,190]]);
+
+			//使用canvas原始函数进行绘图
+			
+			graphics.add(function(coodx,coody){
+				LGlobal.canvas.strokeStyle = '#000000';
+				LGlobal.canvas.moveTo(200,200);
+				LGlobal.canvas.lineTo(400,400);
+				LGlobal.canvas.lineWidth = 5;
+				LGlobal.canvas.stroke();
+
+			})
+	
+		}
+	</script>
+</body>
+</html>

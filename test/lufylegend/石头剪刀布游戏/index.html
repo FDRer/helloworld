@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>石头剪刀布游戏</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+
+</head>
+<body>
+	<div id="mylegend"></div>
+	<script>
+	init(50,'mylegend',800,400,main);
+	var backlayer,resultlayer,clicklayer,loadinglayer,selfBitmap,enemyBitmap;
+	var showlist = new Array();
+	var imglist;
+	var imgData=new Array(
+					{name:'st',path:'img/st.png'},
+					{name:'jd',path:'img/jd.png'},
+					{name:'bu',path:'img/bu.png'},
+					{name:'baner',path:'img/banner.png'}
+		)
+
+	function main(argument) {
+		backlayer = new LSprite();
+		addChild(backlayer);
+		loadinglayer = new LoadingSample3();
+		backlayer.addChild(loadinglayer);
+		LLoadManage.load(imgData,
+							function(progress){
+								loadinglayer.setProgress(progress);
+								console.log(progress);
+							},
+							function(result){
+								imglist = result;
+								backlayer.removeChild(loadinglayer);
+								loadinglayer = null;
+								gameInit();
+							}
+		)
+		
+	}
+
+	function gameInit(){
+		showlist.push(new LBitmapData(imglist['st']));
+		showlist.push(new LBitmapData(imglist['jd']));
+		showlist.push(new LBitmapData(imglist['bu']));
+		//显示游戏标题
+		var gametitle = new LTextField();
+		gametitle.text = "剪刀石头布";
+		gametitle.x = (LGlobal.width-gametitle.width)/2;
+		gametitle.y = 10;
+		gametitle.color="#fff";
+		backlayer.addChild(gametitle);
+		//黑色画布
+		backlayer.graphics.drawRect(0,'#000',[0,0,LGlobal.width,LGlobal.height],true,'#000000');
+		//玩家的出拳
+		selfBitmap = new LBitmap(showlist[0]);
+		selfBitmap.x = 250;
+		selfBitmap.y = (LGlobal.height-selfBitmap.height*0.4)/2;
+		selfBitmap.scaleX=0.4;
+		selfBitmap.scaleY=0.4;
+		backlayer.addChild(selfBitmap);
+		//电脑出拳
+		enemyBitmap = new LBitmap(showlist[1]);
+		enemyBitmap.x = selfBitmap.x+selfBitmap.width*0.4+30;
+		enemyBitmap.y = (LGlobal.height-enemyBitmap.height*0.4)/2;
+		enemyBitmap.scaleX = 0.4;
+		enemyBitmap.scaleY = 0.4;
+		backlayer.addChild(enemyBitmap);
+		//玩家名字
+		var selfName = new LTextField();
+		selfName.text = "玩家";
+		selfName.color = '#fff';
+		selfName.x = selfBitmap.x;
+		selfName.y = selfBitmap.y-20;
+		backlayer.addChild(selfName);		
+
+		//电脑名字
+		var enemyName = new LTextField();
+		enemyName.text = "电脑";
+		enemyName.color = '#fff';
+		enemyName.x = enemyBitmap.x;
+		enemyName.y = enemyBitmap.y-20;
+		backlayer.addChild(enemyName);
+
+
+		initResultLayer();
+
+		initClickLayer();
+	}
+	function initClickLayer(){
+		clicklayer = new LSprite();
+		clicklayer.graphics.drawRect(0,'#fff',[0,0,300,110],true,'#e57f33');
+		clicklayer.x = 250;
+		clicklayer.y = 275; 
+		backlayer.addChild(clicklayer);
+	}
+	function initResultLayer(){
+		resultlayer = new LSprite();
+		resultlayer.graphics.drawRect(0,'#fff',[0,0,150,150],true,'#e57f33');
+		resultlayer.x = 10;
+		resultlayer.y = 100;
+		backlayer.addChild(resultlayer);
+	}
+
+	</script>
+</body>
+</html>

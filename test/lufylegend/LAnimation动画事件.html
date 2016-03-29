@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>LAnimation动画事件</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+
+</head>
+<body>
+	<div id="mylegend">Loading......</div>
+	<script>
+		// var canvas = document.getElementById('mylegend');
+		var list = LGlobal.divideCoordinate(480,630,4,4);
+		console.log(list);
+		// 
+		var loader;
+		var bitmap;
+		var anime;
+		var layer;
+		init(200,'mylegend',600,600,main);
+		function main(argument) {
+			loader = new LLoader();
+			loader.load('img/player.png','bitmapData');
+		
+			loader.addEventListener(LEvent.COMPLETE,loadBitmapData);
+
+		}
+
+		function loadBitmapData(){
+			bitmapdata = new LBitmapData(loader.content,0,0,120,157.5);
+			var list = LGlobal.divideCoordinate(480,630,3,4);
+			
+			layer = new LSprite()
+			layer.x = 400;
+			layer.y = 0;
+			addChild(layer);
+			anime = new LAnimation(layer,bitmapdata,list);
+			layer.addEventListener(LEvent.ENTER_FRAME,onframe);
+		}
+		function onframe(){
+			var action = anime.getAction();
+			switch(action[0]){
+				case 0:
+					layer.y+=5;
+					if(layer.y>=320){anime.setAction(2)}
+					break;
+				case 1:
+					layer.y-=5;
+					if (layer.y<20) {layer.x=400;anime.setAction(0)}
+				break;
+				case 2:
+					layer.x-=5;
+					if (layer.x<20) {anime.setAction(1)}
+				break;
+
+			}
+		
+			anime.onframe();
+		}
+	</script>
+</body>
+</html>

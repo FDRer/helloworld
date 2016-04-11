@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>俄罗斯方块游戏</title>
+	<script src="js/lufylegend-1.10.0.min.js"></script>
+</head>
+<body>
+	<div id="mylegend">loading......</div>
+	<script>
+		init(50,'mylegend',600,500,main);
+		var backlayer,title;
+		var loadingLayer;
+		var imglist = {};
+		var imgData = new Array(
+			{name:'backImage',path:'./img/backImage.png'},
+			{name:'r1',path:"./img/r1.png"},
+			{name:'r2',path:"./img/r2.png"},
+			{name:'r3',path:"./img/r3.png"},
+			{name:'r4',path:"./img/r4.png"}
+		)
+
+
+		function main() {
+			backlayer = new LSprite();
+			backlayer.graphics.drawRect(0,'#000000',[0,0,500,600],true,'#000000');
+			addChild(backlayer);// 填充背景为黑色，以上
+
+			loadingLayer = new LoadingSample1();
+			backlayer.addChild(loadingLayer);
+			LLoadManage.load(imgData,function(progress){
+				loadingLayer.setProgress(progress);
+			},gameinit
+			)
+			backlayer.removChild(loadingLayer);
+			}
+		//写文字函数
+		function writeText(text,content,x,y,color,size,layer){
+			var text = new LTextField();
+			text.text = content;
+			text.x = x;
+			text.y = y;
+			text.color = color;
+			text.size = size;
+			layer.addChild(text);
+		}
+
+		function gameinit(){
+			//显示游戏标题
+			writeText(title,"俄罗斯方块游戏",100,200,"#ffffff",30,backlayer);
+			//显示说明文字
+			var textClick;
+			backlayer.graphics.drawRect(1,'#ffffff',[140,295,180,30],false)
+			writeText(textClick,"点击页面开始游戏",150,300,"#ffffff",20,backlayer);
+		}
+
+	</script>
+
+</body>
+</html>
